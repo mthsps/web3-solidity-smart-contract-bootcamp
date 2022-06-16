@@ -15,13 +15,15 @@ const main = async () => {
       hre.ethers.utils.formatEther(contractBalance)
     );
   
-  
     let waveCount;
     waveCount = await waveContract.getTotalWaves();
     console.log(waveCount.toNumber());
  
     let waveTxn = await waveContract.wave("Voilà: I'm message!");
     await waveTxn.wait(); 
+
+    const waveTxn2 = await waveContract.wave("Voilà: I'm message! #2");
+    await waveTxn2.wait();
 
     contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
     console.log(
